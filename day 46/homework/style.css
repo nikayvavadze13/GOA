@@ -1,0 +1,38 @@
+.name,.author {
+    text-align: center;
+    margin-top: 0px;
+    font-family: arial;
+}
+
+.author {
+    color: rgb(150, 150, 150);
+    margin-left: 150px;
+}
+
+.georgia{
+    color: black;
+}
+
+.georgia:hover {
+    opacity: 0.7;
+}
+
+.georgia:active {
+    color: rgb(8, 91, 159);
+}
+
+.image {
+    margin-left: 300px;
+}
+
+.georgiaimg {
+    border: 2px;
+    border-color: black;
+    border-radius: 1px;
+    margin-left: 250px;
+}
+
+.text {
+    font-family: arial;
+    margin-left: 100px;
+}

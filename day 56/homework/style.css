@@ -1,0 +1,73 @@
+
+
+
+.gravidaphoto {
+    width: 120px;
+    border-radius: 60px;
+    margin-right: 500px;
+    margin-top: -250px;
+}
+
+#gravida {
+    display: block;
+    border: 0.5px solid white;
+    border-radius: 15px;
+    font-family: Arial;
+    text-align: center;
+    background-color: white;
+    width: 600px;
+    padding: 30px;
+    margin-left: 400px;
+    margin-top: 500px;
+
+}
+
+html {
+    background-color: rgb(240, 240, 240);
+}
+
+#textheader {
+    font-family: arial;
+    width: 800px;
+}
+
+
+.header {
+    text-align: center;
+    font-size: 3em;
+    font-family: Montserrat;
+    font-weight: 500;
+}
+
+.info {
+    text-align: center;
+    margin-top: 10px;
+    color: rgb(161, 160, 160);
+}
+
+.henryimage {
+    width: 80px;
+    border: double 5px rgb(173, 173, 173);
+    border-radius: 100%;
+    margin-left: 670px;
+}
+
+
+
+.button1 {
+    width: 100px;
+    background-color: black;
+    border: none ;
+    border-radius: 100%;
+    margin-left: 500px;
+    margin-top: -300px;
+    height: 100px;
+}
+
+#arrow {
+    color: white;
+    width: 120px;
+    height: 200px;
+    border: none;
+    border-radius: 10px;
+}

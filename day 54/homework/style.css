@@ -1,0 +1,51 @@
+.email {
+    border: none;
+    border-radius: 7px;
+    background-color: rgb(224, 221, 221);
+    width: 300px;
+    height: 40px;
+    margin-left: 1000px;
+    margin-top: 150px;
+}
+
+.password {
+    border: none;
+    border-radius: 7px;
+    background-color: rgb(224, 221, 221);
+    width: 300px;
+    height: 40px;
+    margin-left: 1000px;
+    margin-top: 30px;
+}
+
+.forgottenpassword {
+    margin-left: 1200px;
+    margin-top: 5px;
+}
+
+.forgottenpassword:hover {
+    cursor: pointer;
+}
+
+.signbutton {
+    width: 300px;
+    height: 40px;
+    background-color: rgb(64, 64, 247);
+    border: none;
+    border-radius: 7px;
+    margin-left: 1000px;
+    color: white;
+}
+
+.signbutton:hover {
+    cursor: pointer;
+}
+
+.signup {
+    margin-left: 1080px;
+}
+
+
+.photo {
+    margin-top: -400px;
+}
