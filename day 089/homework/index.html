@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Cards</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background-color: #f9f9f9;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .controls {
+      margin-bottom: 20px;
+    }
+
+    .controls button {
+      margin: 5px;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      background-color: #007bff;
+      color: #fff;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .controls button:hover {
+      background-color: #0056b3;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      width: 100%;
+      max-width: 1200px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      transition: transform 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+    }
+
+    .card-content {
+      padding: 15px;
+      text-align: center;
+    }
+
+    .card-title {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    .card-rating {
+      font-size: 1rem;
+      color: #555;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="controls">
+    <button onclick="filterBelowAverage()">Filter Below Average</button>
+    <button onclick="sortAscending()">Sort Ascending</button>
+    <button onclick="sortDescending()">Sort Descending</button>
+    <button onclick="sortRandom()">Sort Random</button>
+  </div>
+  <div class="cards" id="cards">
+    <!-- Cards will be generated here dynamically -->
+  </div>
+
+  <script>
+    const cardsData = [
+      { title: "Card 1", rating: 5, img: "https://via.placeholder.com/300" },
+      { title: "Card 2", rating: 3, img: "https://via.placeholder.com/300" },
+      { title: "Card 3", rating: 8, img: "https://via.placeholder.com/300" },
+      { title: "Card 4", rating: 2, img: "https://via.placeholder.com/300" },
+      { title: "Card 5", rating: 7, img: "https://via.placeholder.com/300" },
+      { title: "Card 6", rating: 6, img: "https://via.placeholder.com/300" },
+      { title: "Card 7", rating: 4, img: "https://via.placeholder.com/300" },
+      { title: "Card 8", rating: 9, img: "https://via.placeholder.com/300" },
+      { title: "Card 9", rating: 1, img: "https://via.placeholder.com/300" },
+      { title: "Card 10", rating: 10, img: "https://via.placeholder.com/300" },
+    ];
+
+    const cardsContainer = document.getElementById("cards");
+
+    function renderCards(data) {
+      cardsContainer.innerHTML = "";
+      data.forEach((card) => {
+        const cardElement = document.createElement("div");
+        cardElement.classList.add("card");
+        cardElement.innerHTML = `
+          <img src="${card.img}" alt="${card.title}">
+          <div class="card-content">
+            <h3 class="card-title">${card.title}</h3>
+            <p class="card-rating">Rating: ${card.rating}</p>
+          </div>
+        `;
+        cardsContainer.appendChild(cardElement);
+      });
+    }
+
+    function filterBelowAverage() {
+      const average = cardsData.reduce((sum, card) => sum + card.rating, 0) / cardsData.length;
+      const filteredCards = cardsData.filter(card => card.rating >= average);
+      renderCards(filteredCards);
+    }
+
+    function sortAscending() {
+      const sortedCards = [...cardsData].sort((a, b) => a.rating - b.rating);
+      renderCards(sortedCards);
+    }
+
+    function sortDescending() {
+      const sortedCards = [...cardsData].sort((a, b) => b.rating - a.rating);
+      renderCards(sortedCards);
+    }
+
+    function sortRandom() {
+      const shuffledCards = [...cardsData].sort(() => Math.random() - 0.5);
+      renderCards(shuffledCards);
+    }
+
+    // Initial render
+    renderCards(cardsData);
+  </script>
+</body>
+</html>
