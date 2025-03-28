@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7-Day Weather Forecast</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin: 20px; }
+        #weather-container { display: flex; justify-content: center; flex-wrap: wrap; }
+        .day-card { border: 1px solid #ddd; padding: 15px; margin: 10px; border-radius: 10px; width: 150px; }
+    </style>
+</head>
+<body>
+    <h1>7-Day Weather Forecast</h1>
+    <input type="text" id="city" placeholder="Enter city name">
+    <button onclick="fetchWeather()">Get Forecast</button>
+    <div id="weather-container"></div>
+
+    <script>
+        const apiKey = "YOUR_API_KEY";
+        
+        async function fetchWeather() {
+            const city = document.getElementById("city").value;
+            if (!city) return alert("Please enter a city name");
+            
+            const url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&cnt=7&appid=${apiKey}`;
+            
+            try {
+                const response = await fetch(url);
+                if (!response.ok) throw new Error("Failed to fetch weather data");
+                
+                const data = await response.json();
+                displayWeather(data);
+            } catch (error) {
+                alert("Error loading weather data.");
+            }
+        }
+        
+        function displayWeather(data) {
+            const container = document.getElementById("weather-container");
+            container.innerHTML = "";
+            
+            data.list.forEach(day => {
+                const dayCard = document.createElement("div");
+                dayCard.className = "day-card";
+                dayCard.innerHTML = `
+                    <h3>${new Date(day.dt * 1000).toDateString()}</h3>
+                    <p>Temp: ${day.main.temp}°C</p>
+                    <p>Humidity: ${day.main.humidity}%</p>
+                `;
+                container.appendChild(dayCard);
+            });
+        }
+    </script>
+</body>
+</html>
