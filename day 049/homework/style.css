@@ -1,0 +1,44 @@
+
+.form {
+    border: 5px solid black;
+    display: block;
+    margin-left: 350px;
+    margin-top: 70px;
+    width: 300px;
+    padding: 70px;
+    border-radius: 7px;
+    background-color: rgb(225, 241, 255);
+    font-family: arial;
+    
+}
+
+
+
+.submit {
+    margin-left: 80px;
+    background-color: rgb(17, 177, 17);
+    border: none;
+    border-radius: 4px;
+    width: 80px;
+    font-family: arial;
+    color: white;
+    height: 40px;
+    font-size: medium;
+}
+
+.submit:hover {
+    opacity: 0.7;
+}
+
+.submit:active {
+    background-color: black;
+    color: white;
+}
+
+.homelink {
+    border: none;
+    font-family: arial;
+    margin-top: 40px;
+    margin-left: 350px;
+    
+}

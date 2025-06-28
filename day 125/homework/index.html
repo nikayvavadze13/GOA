@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Shop</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <script src="script.js"></script>
+    <div class="container">
+        <div class="registration-form" id="registration-form">
+            <h1>Registration</h1>
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" required>
+            </div>
+            <button id="register-btn">Register</button>
+        </div>
+        
+        <div class="shop" id="shop">
+            <div class="header">
+                <div class="user-info">
+                    Welcome, <span class="username-display" id="username-display"></span>
+                    <button class="logout-btn" id="logout-btn">Logout</button>
+                </div>
+                <div class="cart-icon" id="cart-icon">
+                    🛒 <span class="cart-count" id="cart-count">0</span>
+                </div>
+            </div>
+            
+            <h2>Products</h2>
+            <div class="products" id="products"></div>
+        </div>
+        
+        <div class="cart-modal" id="cart-modal">
+            <div class="cart-content">
+                <h2>Cart</h2>
+                <div id="cart-items"></div>
+                <div class="cart-total">Total: $<span id="cart-total">0</span></div>
+                <div class="cart-buttons">
+                    <button id="close-cart">Close</button>
+                    <button id="clear-cart">Clear Cart</button>
+                    <button id="buy-all">Buy All</button>
+                </div>
+            </div>
+        </div>
+    </div>

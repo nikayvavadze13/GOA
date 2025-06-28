@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Data Manager</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        .user-card {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>User Data Manager</h1>
+
+    <form id="userForm">
+        <label>
+            First Name: <input type="text" id="firstName" required>
+        </label><br><br>
+        <label>
+            Last Name: <input type="text" id="lastName" required>
+        </label><br><br>
+        <label>
+            Age: <input type="number" id="age" required>
+        </label><br><br>
+        <label>
+            ID: <input type="text" id="id" required>
+        </label><br><br>
+        <label>
+            Height: <input type="text" id="height" required>
+        </label><br><br>
+        <label>
+            Description: <textarea id="description" required></textarea>
+        </label><br><br>
+        <button type="submit">Add User</button>
+    </form>
+
+    <h2>User List</h2>
+    <div id="userList"></div>
+
+    <script>
+        const form = document.getElementById('userForm');
+        const userList = document.getElementById('userList');
+        const storageKey = 'userData';
+
+        function generateEmail(firstName, lastName, age) {
+            const randomNum = Math.floor(Math.random() * 1000);
+            return `${firstName.toLowerCase()}.${lastName.toLowerCase()}${age}${randomNum}@example.com`;
+        }
+
+        function saveToLocalStorage(users) {
+            localStorage.setItem(storageKey, JSON.stringify(users));
+        }
+
+        function loadFromLocalStorage() {
+            const data = localStorage.getItem(storageKey);
+            return data ? JSON.parse(data) : [];
+        }
+
+        function addUserToDOM(user) {
+            const userCard = document.createElement('div');
+            userCard.className = 'user-card';
+            userCard.innerHTML = `
+                <strong>Name:</strong> ${user.firstName} ${user.lastName}<br>
+                <strong>Age:</strong> ${user.age}<br>
+                <strong>ID:</strong> ${user.id}<br>
+                <strong>Height:</strong> ${user.height}<br>
+                <strong>Description:</strong> ${user.description}<br>
+                <strong>Email:</strong> ${user.email}
+            `;
+            userList.appendChild(userCard);
+        }
+
+        function renderUsers() {
+            userList.innerHTML = '';
+            const users = loadFromLocalStorage();
+            users.forEach(addUserToDOM);
+        }
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const firstName = document.getElementById('firstName').value.trim();
+            const lastName = document.getElementById('lastName').value.trim();
+            const age = parseInt(document.getElementById('age').value.trim(), 10);
+            const id = document.getElementById('id').value.trim();
+            const height = document.getElementById('height').value.trim();
+            const description = document.getElementById('description').value.trim();
+
+            const email = generateEmail(firstName, lastName, age);
+
+            const newUser = { firstName, lastName, age, id, height, description, email };
+
+            const users = loadFromLocalStorage();
+            users.push(newUser);
+            saveToLocalStorage(users);
+
+            addUserToDOM(newUser);
+            form.reset();
+        });
+
+        renderUsers();
+    </script>
+</body>
+</html>

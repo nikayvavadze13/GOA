@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeiran Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .game-container {
+            text-align: center;
+            margin-top: 50px;
+        }
+        .tab {
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            background: #333;
+            color: white;
+            padding: 10px;
+            border-top-left-radius: 10px;
+            cursor: pointer;
+        }
+        .tab-content {
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            background: white;
+            border: 1px solid #ccc;
+            border-top-left-radius: 10px;
+            width: 300px;
+            max-height: 400px;
+            overflow-y: auto;
+            display: none;
+            box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.3);
+        }
+        .tab-content .game-record {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        .tab-content .game-record.green {
+            background-color: #d4edda;
+        }
+        .tab-content .game-record.red {
+            background-color: #f8d7da;
+        }
+        .close-tab {
+            text-align: right;
+            padding: 5px;
+            background: #333;
+            color: white;
+            cursor: pointer;
+            border-top-left-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <h1>Jeiran Game</h1>
+        <button onclick="playGame('player1', 'Run')">Player 1: Run</button>
+        <button onclick="playGame('player1', 'Stay')">Player 1: Stay</button>
+        <button onclick="playGame('player2', 'Run')">Player 2: Run</button>
+        <button onclick="playGame('player2', 'Stay')">Player 2: Stay</button>
+    </div>
+
+    <div class="tab" onclick="toggleTab()">Game Records</div>
+
+    <div class="tab-content" id="tabContent">
+        <div class="close-tab" onclick="toggleTab()">Close</div>
+        <!-- Game records will be appended here -->
+    </div>
+
+    <script>
+        const tabContent = document.getElementById('tabContent');
+
+        function toggleTab() {
+            if (tabContent.style.display === 'block') {
+                tabContent.style.display = 'none';
+            } else {
+                tabContent.style.display = 'block';
+            }
+        }
+
+        const gameRecords = [];
+
+        function playGame(player, action) {
+            const timestamp = new Date().toLocaleTimeString();
+            const outcome = Math.random() > 0.5 ? 'Win' : 'Lose';
+            const record = {
+                player,
+                action,
+                outcome,
+                timestamp
+            };
+
+            gameRecords.push(record);
+            updateTabContent(record);
+        }
+
+        function updateTabContent(record) {
+            const recordDiv = document.createElement('div');
+            recordDiv.className = `game-record ${record.outcome === 'Win' ? 'green' : 'red'}`;
+            recordDiv.innerHTML = `
+                <strong>Player:</strong> ${record.player} <br>
+                <strong>Action:</strong> ${record.action} <br>
+                <strong>Outcome:</strong> ${record.outcome} <br>
+                <strong>Time:</strong> ${record.timestamp}
+            `;
+            tabContent.appendChild(recordDiv);
+        }
+    </script>
+</body>
+</html>

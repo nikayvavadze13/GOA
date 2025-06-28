@@ -1,0 +1,11 @@
+    score = 0
+    
+    for correct, student in zip(correct_answers, student_answers):
+        if student == "":
+            score += 0
+        elif student == correct:
+            score += 4
+        else:
+            score -= 1
+    
+    return max(score, 0)

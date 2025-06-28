@@ -1,0 +1,8 @@
+def filter_list(number):
+    filltered_list = []
+    for i in number:
+        if type(i) == int:
+            filltered_list.append(i)
+        else:
+            pass
+    return filltered_list

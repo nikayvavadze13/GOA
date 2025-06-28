@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+
+body{
+    margin: 0;
+    height: 100vh;
+    font-family: "Lato", serif;
+}
+
+
+#cookie-counter{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
+#gold-counter{
+    position: absolute;
+    right: 10px;
+    top: 50px;
+}
+
+#bonus{
+    display: flex;
+    gap: 10px;
+    position: absolute;
+    bottom: 50px;
+    left: 30%;
+
+}
+
+#bigger-finger, #better-mines, #cookie-doubler{
+    display: flex;
+    background-color: rgb(185, 185, 185);
+    width: 200px;
+    height: 160px;
+    border: 3px solid;
+    border-color: black;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}

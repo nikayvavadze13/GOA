@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dessert Shop</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+
+</head>
+<body class="bg-pink-50 text-gray-800 font-sans">
+
+  <header class="bg-pink-100 p-6 shadow-md flex justify-between items-center">
+    <h1 class="text-2xl font-bold">Sweet Delights 🍰</h1>
+    <div>
+      <button id="cartBtn" class="bg-pink-500 text-white px-4 py-2 rounded hover:bg-pink-600">
+        Cart (<span id="cartCount">0</span>) - $<span id="totalPrice">0</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="p-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+
+  </main>
+
+  <script>
+    const desserts = [
+      { name: "Strawberry Cheesecake", price: 8, img: "https://source.unsplash.com/400x300/?cheesecake" },
+      { name: "Chocolate Cake", price: 7, img: "https://source.unsplash.com/400x300/?chocolate-cake" },
+      { name: "Macarons", price: 5, img: "https://source.unsplash.com/400x300/?macarons" },
+      { name: "Cupcake", price: 4, img: "https://source.unsplash.com/400x300/?cupcake" },
+      { name: "Ice Cream", price: 6, img: "https://source.unsplash.com/400x300/?ice-cream" },
+      { name: "Tiramisu", price: 9, img: "https://source.unsplash.com/400x300/?tiramisu" }
+    ];
+
+    const main = document.querySelector("main");
+    let cartCount = 0;
+    let totalPrice = 0;
+
+    function renderDesserts() {
+      desserts.forEach(dessert => {
+        const card = document.createElement("div");
+        card.className = "bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-lg transition";
+
+        card.innerHTML = `
+          <img src="${dessert.img}" alt="${dessert.name}" class="w-full h-48 object-cover">
+          <div class="p-4">
+            <h2 class="text-xl font-semibold mb-2">${dessert.name}</h2>
+            <p class="mb-4 text-pink-700 font-bold">$${dessert.price}</p>
+            <button class="bg-pink-500 text-white px-4 py-2 rounded hover:bg-pink-600 add-to-cart">
+              Add to Cart
+            </button>
+          </div>
+        `;
+
+        const button = card.querySelector(".add-to-cart");
+        button.addEventListener("click", () => {
+          cartCount++;
+          totalPrice += dessert.price;
+          document.getElementById("cartCount").textContent = cartCount;
+          document.getElementById("totalPrice").textContent = totalPrice;
+        });
+
+        main.appendChild(card);
+      });
+    }
+
+    renderDesserts();
+  </script>
+
+</body>
+</html>

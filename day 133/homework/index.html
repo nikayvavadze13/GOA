@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latest News</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin: 20px; }
+        #news-container { display: flex; flex-direction: column; align-items: center; }
+        .news-card { border: 1px solid #ddd; padding: 15px; margin: 10px; border-radius: 10px; width: 80%; max-width: 600px; }
+        .news-card a { text-decoration: none; color: blue; }
+    </style>
+</head>
+<body>
+    <h1>Latest News</h1>
+    <input type="text" id="search" placeholder="Search news...">
+    <button onclick="fetchNews()">Search</button>
+    <div id="news-container"></div>
+
+    <script>
+        const apiKey = "YOUR_API_KEY";
+
+        async function fetchNews() {
+            const query = document.getElementById("search").value || "latest";
+            const url = `https://newsapi.org/v2/everything?q=${query}&apiKey=${apiKey}`;
+            
+            try {
+                const response = await fetch(url);
+                if (!response.ok) throw new Error("Failed to fetch news");
+                
+                const data = await response.json();
+                displayNews(data.articles);
+            } catch (error) {
+                alert("Error loading news.");
+            }
+        }
+
+        function displayNews(articles) {
+            const container = document.getElementById("news-container");
+            container.innerHTML = "";
+            
+            articles.forEach(article => {
+                const newsCard = document.createElement("div");
+                newsCard.className = "news-card";
+                newsCard.innerHTML = `
+                    <h3>${article.title}</h3>
+                    <p>${article.description || "No description available."}</p>
+                    <a href="${article.url}" target="_blank">Read more</a>
+                `;
+                container.appendChild(newsCard);
+            });
+        }
+
+        fetchNews();
+
+        // Demonstration of forEach, map, and reduce methods
+
+        const users = [
+            { name: "Alice", age: 25 },
+            { name: "Bob", age: 30 },
+            { name: "Charlie", age: 35 },
+            { name: "David", age: 40 },
+            { name: "Eve", age: 45 }
+        ];
+
+        // forEach example - Iterates over each user and logs their name
+        users.forEach(user => console.log(user.name));
+
+        // map example - Creates a new array with only user names
+        const userNames = users.map(user => user.name);
+        console.log(userNames);
+
+        // reduce example - Calculates the total age of all users
+        const totalAge = users.reduce((sum, user) => sum + user.age, 0);
+        console.log("Total Age:", totalAge);
+
+        // Fetch users from API and apply forEach, map, reduce
+        async function fetchUsers() {
+            const url = "https://randomuser.me/api/?results=5";
+            try {
+                const response = await fetch(url);
+                if (!response.ok) throw new Error("Failed to fetch users");
+                const data = await response.json();
+                const users = data.results;
+
+                // forEach - Log each user's full name
+                users.forEach(user => console.log(`${user.name.first} ${user.name.last}`));
+
+                // map - Create an array of email addresses
+                const emails = users.map(user => user.email);
+                console.log(emails);
+
+                // reduce - Count users by gender
+                const genderCount = users.reduce((acc, user) => {
+                    acc[user.gender] = (acc[user.gender] || 0) + 1;
+                    return acc;
+                }, {});
+                console.log(genderCount);
+            } catch (error) {
+                console.error("Error fetching users:", error);
+            }
+        }
+
+        fetchUsers();
+    </script>
+</body>
+</html>

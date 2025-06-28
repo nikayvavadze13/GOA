@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ფილტრაცია თემის მიხედვით</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    #filter-container {
+      margin-bottom: 20px;
+    }
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    li {
+      margin: 5px 0;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div id="filter-container">
+    <label for="subject-filter">აირჩიეთ თემა:</label>
+    <select id="subject-filter">
+      <option value="all">ყველა</option>
+      <option value="მოგზაურობა">მოგზაურობა</option>
+      <option value="მოხსენება">მოხსენება</option>
+      <option value="გაცნობიერება">გაცნობიერება</option>
+    </select>
+  </div>
+
+  <ul id="email-list">
+  </ul>
+
+  <script src="script.js"></script>
+</body>
+</html>

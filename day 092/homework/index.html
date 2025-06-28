@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Password Strength Checker</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      text-align: center;
+      width: 300px;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      outline: none;
+    }
+
+    #strength {
+      font-size: 14px;
+      font-weight: bold;
+      padding: 10px;
+      border-radius: 5px;
+      color: white;
+    }
+
+    .low {
+      background-color: red;
+    }
+
+    .medium {
+      background-color: yellow;
+      color: black;
+    }
+
+    .strong {
+      background-color: green;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Password Strength Checker</h2>
+  <input type="password" id="password" placeholder="Enter your password">
+  <div id="strength">Password strength will appear here</div>
+</div>
+
+<script>
+  const passwordInput = document.getElementById('password');
+  const strengthDisplay = document.getElementById('strength');
+
+  passwordInput.addEventListener('input', () => {
+    const password = passwordInput.value;
+    const strength = checkPasswordStrength(password);
+
+    strengthDisplay.textContent = strength.text;
+    strengthDisplay.className = strength.class;
+  });
+
+  function checkPasswordStrength(password) {
+    const lowStrength = /.{6,}/;
+    const mediumStrength = /^(?=.*[A-Z]|.*\d).{8,}$/;
+    const strongStrength = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%]).{10,}$/;
+
+    if (strongStrength.test(password)) {
+      return { text: 'Strong', class: 'strong' };
+    } else if (mediumStrength.test(password)) {
+      return { text: 'Medium', class: 'medium' };
+    } else if (lowStrength.test(password)) {
+      return { text: 'Low', class: 'low' };
+    } else {
+      return { text: 'Too weak', class: '' };
+    }
+  }
+</script>
+
+</body>
+</html>

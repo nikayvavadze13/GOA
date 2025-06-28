@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bento Grid</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background-color: #f7f9fc;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-auto-rows: 150px;
+      gap: 20px;
+      max-width: 1200px;
+      width: 100%;
+    }
+
+    .grid-item {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .grid-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    .grid-item.large {
+      grid-column: span 2;
+      grid-row: span 2;
+    }
+
+    .grid-item img {
+      max-width: 100%;
+      border-radius: 8px;
+    }
+
+    .grid-item h3 {
+      font-size: 1.2rem;
+      color: #333;
+      margin: 10px 0;
+    }
+
+    .grid-item p {
+      font-size: 0.9rem;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <div class="grid-container">
+    <div class="grid-item">
+      <h3>Create and schedule content quicker.</h3>
+      <button style="margin-top: 10px; padding: 10px 20px; background-color: #ffda79; border: none; border-radius: 5px; cursor: pointer;">Create Post</button>
+    </div>
+    <div class="grid-item large" style="background-color: #e0d7ff;">
+      <h3>Social Media 10x Faster with AI</h3>
+      <p>Over 4,000 5-star reviews</p>
+    </div>
+    <div class="grid-item" style="background-color: #e5d4f8;">
+      <h3>Schedule to social media.</h3>
+      <p>Best Time to Post</p>
+      <img src="https://via.placeholder.com/100" alt="Graph">
+    </div>
+    <div class="grid-item">
+      <h3>Write your content using AI.</h3>
+      <p>Tips for your next post</p>
+    </div>
+    <div class="grid-item">
+      <h3>Manage multiple accounts and platforms.</h3>
+      <p>Centralized management</p>
+    </div>
+    <div class="grid-item">
+      <h3>Maintain a consistent posting schedule.</h3>
+      <p>Week view</p>
+    </div>
+    <div class="grid-item" style="background-color: #fbe6c2;">
+      <h3>>56% faster audience growth</h3>
+    </div>
+    <div class="grid-item">
+      <h3>Follower Growth</h3>
+      <p>20,642 this month</p>
+    </div>
+    <div class="grid-item">
+      <h3>Grow followers with non-stop content.</h3>
+      <p>Automated scheduling</p>
+    </div>
+  </div>
+</body>
+</html>

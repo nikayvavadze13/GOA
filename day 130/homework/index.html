@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joke & Advice Generator</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin: 50px; }
+        select, button { margin: 10px; padding: 10px; }
+        .output { margin-top: 20px; font-size: 18px; }
+    </style>
+</head>
+<body>
+    <h1>Joke & Advice Generator</h1>
+    <label for="category">Select Joke Category:</label>
+    <select id="category">
+        <option value="Any">Any</option>
+        <option value="Programming">Programming</option>
+        <option value="Misc">Misc</option>
+        <option value="Pun">Pun</option>
+        <option value="Spooky">Spooky</option>
+        <option value="Christmas">Christmas</option>
+    </select>
+    <button onclick="generateContent()">Get Joke & Advice</button>
+    
+    <div class="output">
+        <p><strong>Joke:</strong> <span id="joke"></span></p>
+        <p><strong>Advice:</strong> <span id="advice"></span></p>
+    </div>
+    
+    <script>
+        async function generateContent() {
+            const category = document.getElementById("category").value;
+            const jokeUrl = `https://v2.jokeapi.dev/joke/${category}?safe-mode`;
+            const adviceUrl = "https://api.adviceslip.com/advice";
+            
+            try {
+                const [jokeRes, adviceRes] = await Promise.all([
+                    fetch(jokeUrl),
+                    fetch(adviceUrl)
+                ]);
+                
+                if (!jokeRes.ok || !adviceRes.ok) throw new Error("Failed to fetch data");
+                
+                const jokeData = await jokeRes.json();
+                const adviceData = await adviceRes.json();
+                
+                document.getElementById("joke").textContent = jokeData.type === "single" 
+                    ? jokeData.joke 
+                    : `${jokeData.setup} - ${jokeData.delivery}`;
+                
+                document.getElementById("advice").textContent = adviceData.slip.advice;
+            } catch (error) {
+                document.getElementById("joke").textContent = "Error loading joke.";
+                document.getElementById("advice").textContent = "Error loading advice.";
+            }
+        }
+    </script>
+</body>
+</html>

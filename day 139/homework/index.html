@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="min-h-screen bg-gray-100 flex flex-col items-center justify-center p-6">
+        <h1 class="text-4xl font-bold text-center mb-6">Სათაური</h1>
+        <p class="text-gray-600 text-center mb-4 max-w-xl">აღწერა, რაც ჩანს მაკეტზე</p>
+        <button class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg">დაწყება</button>
+      </div>
+      
+
+
+    <div class="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+        <h2 class="text-2xl font-bold mb-4">დრო დარჩა:</h2>
+        <div id="timer" class="text-4xl font-mono text-blue-600">00d 00h 00m 00s</div>
+      </div>
+      
+      <script>
+        const targetDate = new Date(`${new Date().getFullYear()}-12-31T23:59:59`);
+      
+        function updateTimer() {
+          const now = new Date();
+          const diff = targetDate - now;
+      
+          if (diff <= 0) {
+            document.getElementById("timer").textContent = "დრო ამოიწურა!";
+            return;
+          }
+      
+          const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+          const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+          const minutes = Math.floor((diff / (1000 * 60)) % 60);
+          const seconds = Math.floor((diff / 1000) % 60);
+      
+          document.getElementById("timer").textContent =
+            `${days}d ${hours}h ${minutes}m ${seconds}s`;
+        }
+      
+        setInterval(updateTimer, 1000);
+        updateTimer();
+      </script>
+      
+</body>
+</html>
